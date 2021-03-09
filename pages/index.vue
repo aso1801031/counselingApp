@@ -7,7 +7,8 @@
       type="info"
     >
       I'm a dense alert with a <strong>type</strong> of info
-    </v-alert>      <v-btn elevation="2"　x-large >ボタン</v-btn>    
+    </v-alert>      
+    <v-btn elevation="2"　x-large >ボタン</v-btn>
       <v-card
       class="mx-auto"
       max-width="344"

@@ -9,11 +9,13 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "array-foreach-async": "^1.0.1",
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.8.3",
     "firebase": "^8.2.10",
-    "nuxt": "^2.14.12"
+    "nuxt": "^2.14.12",
+    "skyway-js": "^4.4.0"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.3"
