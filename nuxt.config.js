@@ -28,6 +28,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxtjs/vuetify',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -38,5 +39,16 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+  vuetify: {
+    theme: {
+      primary: '#03a9f4',
+      secondary: '#607d8b',
+      accent: '#9c27b0',
+      error: '#f44336',
+      warning: '#ffc107',
+      info: '#009688',
+      success: '#4caf50'
+    }
   }
 }
