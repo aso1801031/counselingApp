@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <p>やあ</p>
+      <p>やあ! こんにちは</p>
       <v-alert
       dense
       type="info"
