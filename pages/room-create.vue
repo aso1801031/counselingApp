@@ -12,19 +12,20 @@
                     </v-col>
 
                     <v-row>
-                        <v-col cols="12" sm="3" md="3">
+                        <v-col cols="12" sm="2" md="2"></v-col><!--空白用-->
+                        <v-col cols="12" sm="2" md="2">
                             <v-checkbox label="勉強" value="study"></v-checkbox>
                             <v-checkbox label="スポーツ" value="sport"></v-checkbox>
                         </v-col>
-                        <v-col cols="12" sm="3" md="3">
+                        <v-col cols="12" sm="2" md="2">
                             <v-checkbox label="趣味" value="hobby"></v-checkbox>
                             <v-checkbox label="仕事" value="job"></v-checkbox>
                         </v-col>
-                        <v-col cols="12" sm="3" md="3">
+                        <v-col cols="12" sm="2" md="2">
                             <v-checkbox label="学校" value="school"></v-checkbox>
                             <v-checkbox label="ゲーム" value="game"></v-checkbox>
                         </v-col>
-                        <v-col cols="12" sm="3" md="3">
+                        <v-col cols="12" sm="2" md="2">
                             <v-checkbox label="恋愛" value="love"></v-checkbox>
                             <v-checkbox label="その他" value="other"></v-checkbox>
                         </v-col>
