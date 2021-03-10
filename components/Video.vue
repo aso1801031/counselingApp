@@ -5,7 +5,7 @@
             <v-row>
                 <v-col>
                     <div class="video_el bg-secondary">
-                        <video id="my-video" autoplay playsinline></video> 
+                        <video id="my-video" autoplay playsinline　muted="true"></video> 
                     </div>
                 </v-col>
                 <v-col>
@@ -193,20 +193,6 @@
                     )}
                 })
             }
-
-
-            /*doc.data().consulted_id.get().then(consulted_id => {
-                doc.data().consultant_id.get().then(consultant_id => {
-                    if(consulted_id.id == this.myid){
-                        console.log("id",consulted_id.id)
-                        this.myname=consulted_id.data().nickname;
-                    }else if(){
-
-                    }
-
-                })
-            })*/
-
 
         });
 
