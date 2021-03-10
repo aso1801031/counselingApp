@@ -22,8 +22,15 @@
     components: {
       vi,
       tx,
-  
-    }
+    },
+    data(){
+        return {
+        }
+    },
+    created(){
+        console.log("sotreId : ",this.$store.state.id)
+    },
+
   }
 </script>
 <style>

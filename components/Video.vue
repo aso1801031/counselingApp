@@ -22,9 +22,6 @@
                     {{this.othername}}      
                 </v-col>
             </v-row>
-            <p>My id: <span id="my-id">{{peerId}}</span></p>
-            <input v-model="calltoid" placeholder="call id">
-            <button @click="makeCall" class="button--green">Call</button>
             <div class="mt-15">
                 <v-btn class="ma-10" color="dark" fab dark v-if="!muteFlg" v-on:click="mute()">                
                     <v-icon large>mdi-microphone</v-icon>
@@ -59,11 +56,11 @@
           peerId: '',
           calltoid: '',
           roomId: this.$route.params.id,
-          myname:null,
-          myid:"n1lE7nA69QapAQz7hGv1",//ストアid
-          othername:null,
-          muteFlg:true,
-          soundFlg:true,
+          myname: null,
+          myid: this.$store.state.id,//ストアid
+          othername: null,
+          muteFlg: true,
+          soundFlg: true,
           min: 10,
           sec: 0,
 
@@ -141,7 +138,7 @@
 
       },
       async mounted(){
-        this.peer = new Peer(/*this.myid,*/{ key: this.APIKey,debug: 3,});
+        this.peer = new Peer(this.myid,{ key: this.APIKey,debug: 3,});
     
         await this.peer.on('open', () => {
             this.peerId = this.peer.id
@@ -158,21 +155,59 @@
       async created(){
         await firebase.firestore().collection("counseling-rooms").doc(this.roomId)
         .onSnapshot(doc =>  {
-            //被相談者名前
-            doc.data().consulted_id.get().then(res => {
-                if(this.myid == res.id){
-                    console.log("id",res.id)
-                    this.myname=res.data().nickname;
+            //被相談者が自分の場合
+            doc.data().consulted_id.get().then(consulted_id => {
+                if(consulted_id.id == this.myid){
+                    //自分の名前登録
+                    this.myname=consulted_id.data().nickname;
+
+                    //相手の名前登録
+                    if(doc.data().consultant_id !== null){
+                        doc.data().consultant_id.get().then(consultant_id => {
+                            this.othername=consultant_id.data().nickname;
+                            this.calltoid=consultant_id.id;
+                            this.makeCall()
+                            this.start()
+                        })
+                    }
+
                 }
             })
-            //相談者の名前
+            //相談者が自分の場合
             if(doc.data().consultant_id !== null){
-                doc.data().consultant_id.get().then(res => {
-                    this.othername=res.data().nickname;
-                    //this.calltoid=res.id;
-                    this.start()
+                doc.data().consultant_id.get().then(consultant_id => {
+                    if(consultant_id.id == this.myid){
+                        //自分の名前登録
+                        this.myname=consultant_id.data().nickname;
+
+                        //相手の名前
+                        doc.data().consulted_id.get().then(consulted_id => {
+                            this.othername=consulted_id.data().nickname;
+                            this.calltoid=consulted_id.id;
+                            this.makeCall()
+                        
+                            this.start()
+
+                        }
+
+                    )}
                 })
             }
+
+
+            /*doc.data().consulted_id.get().then(consulted_id => {
+                doc.data().consultant_id.get().then(consultant_id => {
+                    if(consulted_id.id == this.myid){
+                        console.log("id",consulted_id.id)
+                        this.myname=consulted_id.data().nickname;
+                    }else if(){
+
+                    }
+
+                })
+            })*/
+
+
         });
 
       },
@@ -205,8 +240,8 @@
         margin: auto;
     }
     .video_el{
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
         margin: 25px auto;
         margin-bottom: 5px;
         border-radius: 15px;

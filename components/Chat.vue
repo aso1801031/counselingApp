@@ -38,7 +38,7 @@ export default {
         return {
             message:"",
             getMessages: [],
-            myid: "n1lE7nA69QapAQz7hGv1",
+            myid: this.$store.state.id,//ストアid
             otherid:"",
             roomid: this.$route.params.id,
 
