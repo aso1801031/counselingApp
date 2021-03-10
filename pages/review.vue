@@ -1,5 +1,5 @@
 <template>
-    <div class="container" id="app">
+    <div class="container">
 
             <v-card class="mx-auto" max-width="600" align="center">
                 <v-card-text>
@@ -7,12 +7,12 @@
                         ○○さんの対応はどうでしたか？
                     </p>
                     <v-col cols="6"><!-- 星プルダウン -->
-                        <v-select color="yellow" v-model="e1" :items="states" menu-props="auto" label="Select" hide-details prepend-icon="mdi-star" single-line></v-select>
+                        <v-select color="yellow" v-model="e1" :items="states" menu-props="auto" label="星いくつ？" hide-details prepend-icon="mdi-star" single-line></v-select>
                     </v-col>
                 </v-card-text>
             
                 <v-card-actions>
-                    <v-btn outlined color="success" @click="reveal = true">
+                    <v-btn class="mx-auto" align="center" outlined depressed elevation="2" color="success" @click="reveal = true">
                         完了
                     </v-btn>
                 </v-card-actions>
@@ -25,7 +25,6 @@
 export default {
     data () {
       return {
-        e1: null,
         states: [
           '5', '4', '3', '2','1'
         ]
