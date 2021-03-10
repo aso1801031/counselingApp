@@ -7,7 +7,7 @@
                         ○○さんの対応はどうでしたか？
                     </p>
                     <v-col cols="6"><!-- 星プルダウン -->
-                        <v-select color="yellow" v-model="e1" :items="states" menu-props="auto" label="星いくつ？" hide-details prepend-icon="mdi-star" single-line></v-select>
+                        <v-select color="yellow" :items="states" menu-props="auto" label="星いくつ？" hide-details prepend-icon="mdi-star" single-line></v-select>
                     </v-col>
                 </v-card-text>
             
