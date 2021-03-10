@@ -3,6 +3,7 @@
       <div>
           入力値:{{id}} <br/>
           store:{{$store.state.id}}
+          
         <v-text-field label="id" v-model="id"></v-text-field>
         <v-btn v-on:click="submit()">確定</v-btn>
         <v-btn v-on:click="clear()">clear</v-btn>
