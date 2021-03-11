@@ -4,7 +4,7 @@
         <v-card class="mx-auto" max-width="600" align="center">
             <v-card-text>
                 <p class="display-1 text--primary"><!-- ユーザー名に後で変更 -->
-                    ○○さんの対応はどうでしたか？
+                    サンプル太郎さんの対応はどうでしたか？
                 </p>
 
                 <v-col cols="6"><!-- 星プルダウン -->
