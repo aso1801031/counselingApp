@@ -13,25 +13,27 @@
                 </v-col>
 
                 <h5 class="text--primary" align="left">カテゴリー</h5>
-                <v-row>
-                    <v-col cols="12" sm="2" md="2"></v-col>
-                    <v-col cols="12" sm="2" md="2">
-                        <v-checkbox label="勉強" value="study"></v-checkbox>
-                        <v-checkbox label="スポーツ" value="sport"></v-checkbox>
-                    </v-col>
-                    <v-col cols="12" sm="2" md="2">
-                        <v-checkbox label="趣味" value="hobby"></v-checkbox>
-                        <v-checkbox label="仕事" value="job"></v-checkbox>
-                    </v-col>
-                    <v-col cols="12" sm="2" md="2">
-                        <v-checkbox label="学校" value="school"></v-checkbox>
-                        <v-checkbox label="恋愛" value="love"></v-checkbox>
-                    </v-col>
-                    <v-col cols="12" sm="2" md="2">
-                        <v-checkbox label="ゲーム" value="game"></v-checkbox>
-                        <v-checkbox label="その他" value="other"></v-checkbox>
-                    </v-col>
-                </v-row>
+                <v-radio-group v-model="ex7" column>
+                    <v-row>
+                        <v-col cols="12" sm="2" md="2"></v-col>
+                        <v-col cols="12" sm="2" md="2">
+                            <v-radio label="勉強" value="study"></v-radio>
+                            <v-radio label="スポーツ" value="sport"></v-radio>
+                        </v-col>
+                        <v-col cols="12" sm="2" md="2">
+                            <v-radio label="趣味" value="hobby"></v-radio>
+                            <v-radio label="仕事" value="job"></v-radio>
+                        </v-col>
+                        <v-col cols="12" sm="2" md="2">
+                            <v-radio label="学校" value="school"></v-radio>
+                            <v-radio label="恋愛" value="love"></v-radio>
+                        </v-col>
+                        <v-col cols="12" sm="2" md="2">
+                            <v-radio label="ゲーム" value="game"></v-radio>
+                            <v-radio label="その他" value="other"></v-radio>
+                        </v-col>
+                    </v-row>
+                </v-radio-group>
             </v-card-text>
             
             <v-card-actions>
