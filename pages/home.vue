@@ -1,5 +1,8 @@
 <template>
-    <p>home画面だよ^^</p>
+    <v-container>
+        <p>home画面だよ^^</p>
+
+    </v-container>
 </template>
 
 <script>
