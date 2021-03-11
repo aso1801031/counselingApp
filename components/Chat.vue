@@ -8,23 +8,26 @@
                 <v-card-text>{{data.msg}}</v-card-text>    
             </div>
         </div>
-        <v-card-actions class="chat_action">
-            <div class="send_area">
-                <v-textarea
-                filled
-                auto-grow
-                label="メッセージ"
-                rows="3"
-                row-height="30"
-                outlined
-                v-model="message"
-                class="message_box"
-              ></v-textarea>    
-              <div class="send_btn">
-                <v-btn color="indigo" v-on:click="pushMessage" dark>送信</v-btn>
-              </div>
-            </div>        
-        </v-card-actions>
+        <v-container>
+            <v-card-actions class="chat_action">
+                <div class="send_area">
+                    <v-textarea
+                    filled
+                    auto-grow
+                    label="メッセージ"
+                    rows="3"
+                    row-height="30"
+                    outlined
+                    v-model="message"
+                    class="message_box"
+                  ></v-textarea>    
+                  <div class="send_btn">
+                    <v-btn color="indigo" v-on:click="pushMessage" dark>送信</v-btn>
+                  </div>
+                </div>        
+            </v-card-actions>
+    
+        </v-container>
     </v-card>
 </template>
 
@@ -97,7 +100,6 @@ export default {
 
 <style>
     .chat_main{
-        padding: 0%;
         margin: 0%;
         height: 88vh;
         position:relative;
@@ -106,9 +108,10 @@ export default {
         padding: 0%;
     }
     .send_area{
-        width: 100%;
+        width: 90%;
         position:absolute;
         bottom:0;
+        text-align: center;
     }
     .send_btn{
         text-align: right;
@@ -120,5 +123,8 @@ export default {
     }
     .othermsg{
         text-align: left;
+    }
+    .message_box{
+        text-align: center;
     }
 </style>

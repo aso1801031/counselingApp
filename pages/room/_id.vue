@@ -39,7 +39,6 @@
         padding: 0%;
     }
     .chat_area{
-        padding: 0px;
     }
     .chat_area_card{
         height: 100%;
