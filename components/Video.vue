@@ -29,12 +29,14 @@
                 <v-btn class="ma-10" color="dark" fab dark v-if="muteFlg"  v-on:click="unmute()">                
                     <v-icon large>mdi-microphone-off</v-icon>
                 </v-btn>
+                <!--
                 <v-btn class="ma-10" color="dark" fab dark v-if="soundFlg" v-on:click="nosound()">                
                     <v-icon large>mdi-headphones</v-icon>
                 </v-btn>
                 <v-btn class="ma-10" color="dark" fab dark v-if="!soundFlg" v-on:click="sound()">                
                     <v-icon large>mdi-headphones-off</v-icon>
                 </v-btn>
+                -->
                 <v-btn class="ma-10" color="dark" fab dark　v-on:click="complete()">                
                     <v-icon large>mdi-exit-to-app</v-icon>
                 </v-btn>
@@ -54,6 +56,7 @@
           APIKey: 'c30ada52-34c6-4f36-a752-63e28d908689',
           localStream: null,
           peerId: '',
+          peer: null,
           calltoid: '',
           roomId: this.$route.params.id,
           myname: null,
@@ -63,6 +66,7 @@
           soundFlg: true,
           min: 10,
           sec: 0,
+          mustReview:true,
 
         }
       },
@@ -106,13 +110,13 @@
             this.localStream.getAudioTracks().forEach((track) => (track.enabled = true));
         },
         //相手をミュート
-        nosound(){
+        /*nosound(){
             this.soundFlg=false;
         },
         //相手のミュート解除
         sound(){
             this.soundFlg=true;
-        },
+        },*/
         //カウントダウン機能
         count() {
             if (this.sec <= 0 && this.min >= 1) {
@@ -133,7 +137,14 @@
         complete() {
             clearInterval(this.timerObj);
             console.log("カウントダウン終了");
-            //レビュ画面遷移、firebase room削除処理、
+            this.peer.destroy();
+            if(this.mustReview){
+                window.location.href="/review/"+this.roomId;
+            }else{
+                window.location.href="/home"
+            }
+
+            //firebaseからroom削除処理
         }
 
       },
@@ -168,6 +179,7 @@
                             this.calltoid=consultant_id.id;
                             this.makeCall()
                             this.start()
+                            this.mustReview=false;
                         })
                     }
 

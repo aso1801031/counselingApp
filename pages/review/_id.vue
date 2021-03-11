@@ -13,7 +13,7 @@
             </v-card-text>
             
             <v-card-actions>
-                <v-btn class="mx-auto" align="center" outlined depressed elevation="2" color="success" @click="reveal = true">
+                <v-btn class="mx-auto" align="center" outlined depressed elevation="2" color="success" @click="returnHome()">
                     完了
                 </v-btn>
             </v-card-actions>
@@ -30,6 +30,14 @@ export default {
           '5', '4', '3', '2','1'
         ]
       }
+    },
+    created(){
+
+    },
+    methods:{
+        returnHome(){
+            window.location.href="/home";
+        }
     }
 }
 
