@@ -2,16 +2,12 @@
     <div class="video_main">
         <p class="time mt-10 mb-10">{{ formatTime }}</p>
         <v-card class="video_card">
-            <v-row>
+            <v-row class="video_el_area">
                 <v-col>
-                    <div class="video_el bg-secondary">
-                        <video id="my-video" autoplay playsinline　muted="true"></video> 
-                    </div>
+                    <video id="my-video" autoplay playsinline　muted="true"></video> 
                 </v-col>
                 <v-col>
-                    <div class="video_el bg-secondary">
-                        <video id="their-video" autoplay playsinline></video>
-                    </div>
+                    <video id="their-video" autoplay playsinline></video>
                 </v-col>    
             </v-row>
             <v-row class="mt-0">
@@ -164,6 +160,7 @@
     
       },
       async created(){
+
         await firebase.firestore().collection("counseling-rooms").doc(this.roomId)
         .onSnapshot(doc =>  {
             //被相談者が自分の場合
@@ -242,6 +239,21 @@
         height: 200px;
         margin: 25px auto;
         margin-bottom: 5px;
+        border-radius: 15px;
+    }
+    .video_el_area{
+        padding-top: 20px;
+    }
+    #my-video{
+        width: 200px;
+        height: 200px;
+        background-color: royalblue;
+        border-radius: 15px;
+    }
+    #their-video{
+        width: 200px;
+        height: 200px;
+        background-color: hotpink;
         border-radius: 15px;
     }
 </style>
