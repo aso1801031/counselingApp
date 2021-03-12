@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid fill-height class="container">
+    <v-container fluid fill-height class="home">
 
         <!--<v-card class="mx-auto" max-width="900" align="center">
             <v-card-text>
@@ -40,10 +40,10 @@
 </script>
     
 <style>
-.container {
-  background: url("../static/images/1990310_l.jpg");
+.home {
+  background: url("../static/images/1990310_m.jpg");
   background-size: cover;
-  background-position: center center;
+  background-position: center top 39%;
   width: 100%;
   height: 100%;
 }
