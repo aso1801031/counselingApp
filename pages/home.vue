@@ -59,8 +59,7 @@
     
 <style>
 .home {
-  background: url("../static/images/1990310_m.jpg");
-  /*background-color: #3F51B5;*/
+  background: url("../static/images/background.jpg");
   background-size: cover;
   background-position: center top 38%;
   width: 100%;
