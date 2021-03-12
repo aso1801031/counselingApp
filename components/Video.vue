@@ -171,6 +171,7 @@
                 if(consulted_id.id == this.myid){
                     //自分の名前登録
                     this.myname=consulted_id.data().nickname;
+                    this.mustReview=false;
 
                     //相手の名前登録
                     if(doc.data().consultant_id !== null){
@@ -179,7 +180,6 @@
                             this.calltoid=consultant_id.id;
                             this.makeCall()
                             this.start()
-                            this.mustReview=false;
                         })
                     }
 

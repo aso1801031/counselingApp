@@ -63,7 +63,7 @@ export default {
                 await firebase.firestore()
                 .collection('counseling-rooms')
                 .doc(this.roomid)
-                .collection('chat-room')
+                .collection('chatroom')
                 .doc()
                 .set(messageData)
 
@@ -75,7 +75,7 @@ export default {
             var ref = await firebase.firestore()
                 .collection('counseling-rooms')
                 .doc(this.roomid)
-                .collection('chat-room')
+                .collection('chatroom')
                 .orderBy("timestamp", "asc");
 
             await ref.onSnapshot( (doc) => {

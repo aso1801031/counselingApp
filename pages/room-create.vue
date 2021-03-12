@@ -55,21 +55,35 @@ export default {
         return{
             db: null,
             room: null,
+            myid: "",
+            title: "",
+            category: "",
         }
     },
     created(){
-        this.db = firebase.firestore()
-        this.room = this.db.collection('rooms')
+        this.db = firebase.firestore();
+        this.room = this.db.collection('counseling-rooms');
+        this.myid = this.$store.state.id;
 
     },
     methods: {
         addRoom(){
             if(this.title === "" || this.category === ""){ return }
+            let mypath = firebase.firestore().collection("users").doc(this.myid);
+            let catepath = firebase.firestore().collection("categorys").doc(this.category);
+            console.log(mypath,catepath);
+
             this.room.add({
                 title: this.title,
-                category: this.category,
+                category: catepath,
+                consulted_id: mypath,
+                consultant_id: null,                
+            }).then(function(docRef){
+                console.log('成功！',docRef.id);
+                window.location.href="/room/"+docRef.id;
+            }).catch(function(error){
+                console.log('失敗...',error);
             })
-            this.$router.push('/')
         }
     }
 }

@@ -8,7 +8,7 @@
                         <h3 class="quickSand" style="text-align:center;">メールアドレス</h3>
                     </v-col>
                     <v-col cols="4">
-                        <v-text-field  label="E-mail"  v-model="email" :rules="emailRules">
+                        <v-text-field  label="E-mail"  v-model="email">
                         </v-text-field>
                     </v-col>
                 </v-row>
@@ -19,15 +19,8 @@
                         <h3 class="quickSand" style="text-align:center;">パスワード</h3>
                     </v-col>
                     <v-col cols="4">
-                        <v-text-field  label="password"  v-model="password" :rules="[v => !!v || 'Password is required']" type="password">
+                        <v-text-field  label="password"  v-model="password">
                         </v-text-field>
-                    </v-col>
-                </v-row>
-
-                <!--エラーメッセージ-->
-                <v-row justify="center" class="mt-0 error--text">
-                    <v-col cols="4" align="center">
-                        {{error_message}}
                     </v-col>
                 </v-row>
 
@@ -41,7 +34,7 @@
                 <!--新規登録ボタン-->
                 <v-row justify="center" class="mt-4">
                     <v-col cols="4" align="center">
-                        <a block height="60" large to="/member-registration" class="accent red--text" nuxt><h4>初めての方はこちらから</h4></a>
+                        <a block height="60" large @click="toregist" class="accent red--text" nuxt><h4>初めての方はこちらから</h4></a>
                     </v-col>
                 </v-row>
             </v-card-text>
@@ -51,7 +44,22 @@
 
 <script>
 export default {
-    
+    data: () => ({
+        email: "",
+        password: "",
+    }),
+    computed:{
+    },
+    methods: {
+        submit(){
+
+        },
+        toregist(){
+            window.location.href="/registration";
+        }
+
+    }
+
 }
 
 </script>
