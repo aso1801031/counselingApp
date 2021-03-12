@@ -4,25 +4,25 @@
         <v-card width=20% height=auto color="brown lighten-4">
                 
                 <v-card-text>
-                    <v-btn class="homeBtn" large color="cyan lighten-1" dark width=100% height=100px @click="moveMypage()">
+                    <v-btn class="homeBtn" large color="indigo" dark width=100% height=100px @click="moveMypage()">
                     <h2>マイページ</h2>
                     </v-btn>
                 </v-card-text>
 
                 <v-card-text>
-                    <v-btn class="homeBtn" large color="cyan lighten-1" dark width=100% height=100px @click="moveRoomCreate()">
+                    <v-btn class="homeBtn" large color="indigo" dark width=100% height=100px @click="moveRoomCreate()">
                     <h2>相談室募集</h2>
                     </v-btn>
                 </v-card-text>
 
                 <v-card-text>
-                    <v-btn class="homeBtn" large color="cyan lighten-1" dark width=100% height=100px @click="moveRoomSearch()">
+                    <v-btn class="homeBtn" large color="indigo" dark width=100% height=100px @click="moveRoomSearch()">
                     <h2>相談室検索</h2>
                     </v-btn>
                 </v-card-text>
 
                 <v-card-text>
-                    <v-btn class="homeBtn" large color="cyan lighten-1" dark width=100% height=100px @click="logout()">
+                    <v-btn class="homeBtn" large color="indigo" dark width=100% height=100px @click="logout()">
                     <h2>ログアウト</h2>
                     </v-btn>
                 </v-card-text>
