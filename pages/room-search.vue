@@ -99,7 +99,7 @@
                                     color="success"
                                     v-on:click="join(result.cou_id)"
                                     x-large>
-                                        Join!
+                                        参加
                                     </v-btn>                  
                                 </div>
                             </v-col>
@@ -117,20 +117,23 @@
     export default {
         data: () => ({
             myid:"",
-            nickname: '',
+            nickname: null,
             sex: null,
             age: null,
             category: null,
             sexs: ['男性', '女性', 'その他'],
             ages: ["15~19","20~29","30~39"],
             categorys: ["勉強","趣味","学校","ゲーム","スポーツ","仕事","恋愛","その他"],
+            search_results: [],
             search_result: [],
+
         }),
         computed:{
         },
         methods: {
             async serach(){
                 //名前検索
+                this.search_results=[];
                 this.search_result=[];
                 let cate_name=""
                 if(this.nickname !== null){
@@ -144,7 +147,7 @@
                                 doc.data().consulted_id.get().then(res => { 
                                     if(this.nickname == res.data().nickname){
                                         console.log("1:検索成功: "+ res.data().nickname,"docid:",doc.id);
-                                        this.search_result.push({ title:doc.data().title , user:res.data() , category:cate_name ,cou_id:doc.id, })
+                                        this.search_results.push({ title:doc.data().title , user:res.data() , category:cate_name ,cou_id:doc.id, })
                                     }
                                 });
                             }
@@ -152,7 +155,28 @@
                     })
                 }
 
-                console.log(this.search_result);
+                //カテゴリ検索
+                if(this.category !== null){
+                    await firebase.firestore().collection('counseling-rooms').get().then(snapshot => {
+                        snapshot.forEach(doc => {
+                            console.log("1カテゴリnullcheck:",doc.data().category,doc.data().category == null)
+                            if(doc.data().consultant_id == null){
+                                doc.data().category.get().then(category => {
+                                    console.log(2,category.data().name)
+                                    //cate_name = category.data().name;
+                                    if(this.category == category.data().name){
+                                        doc.data().consulted_id.get().then(res => { 
+                                            console.log("3:検索成功: "+ res.data(),"docid:");
+                                            this.search_results.push({ title:doc.data().title , user:res.data() , category:category.data().name ,cou_id:doc.id, })
+                                            this.distinct()
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    })
+                }
+
 
             },
             async join(id){
@@ -163,6 +187,10 @@
                 });
 
                 window.location.href="/room/"+id;
+            },
+            distinct(){
+                console.log("4",this.search_results);
+                this.search_result = [...new Set(this.search_results)];
             }
         },
         created:function () {

@@ -34,7 +34,7 @@
 
 <script>
     export default {
-        
+        layout:"default1",
     }
     
 </script>
