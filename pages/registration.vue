@@ -18,7 +18,6 @@
                                 <v-text-field
                                 v-model="mailadress"
                                 label="メールアドレス"
-                                type="email"
                                 ></v-text-field>                            
                         </v-col>
                     </v-row>
@@ -67,7 +66,7 @@
                         </v-col>
                         <v-col cols="12" md="8">                            
                             <v-radio-group
-                            class="mt-9"
+                                class="mt-9"
                                 v-model="sex"
                                 row
                                 >
@@ -161,10 +160,8 @@
             nickname: "",
             sex: "",
             age: "",
-            profile: "",
-
-
-            
+            profile: "",     
+            num: 0,       
         }),
         created(){  },
         computed:{
@@ -187,11 +184,12 @@
         },
         methods:{
             signup:async function(){
-                // firebase authに情報を追加(メールアドレス,パスワード)
+                // firebase auth insert処理(mailadress,password)
                 firebase.auth().createUserWithEmailAndPassword(this.mailadress,this.password)
                 .then(ok => { 
                     // cloud firebase insert処理
                     var self = this
+                    self.num = Math.floor( Math.random() * (8 + 1 - 1) ) + 1;
                     const db = firebase.firestore()
                     let dbUsers = db.collection('users')
                     dbUsers
@@ -204,7 +202,7 @@
                         profile: this.profile,
                         average: 0,
                         total: 0,
-                        imagepass: "",
+                        imagepass: "images/"+self.num+".png",
                     }).then(function(docRef){
                         location.href = "login";
                     })
