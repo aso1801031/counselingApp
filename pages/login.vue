@@ -19,7 +19,7 @@
                         <h3 class="quickSand" style="text-align:center;">パスワード</h3>
                     </v-col>
                     <v-col cols="4">
-                        <v-text-field  label="password"  v-model="password">
+                        <v-text-field  label="password" type="password"  v-model="password">
                         </v-text-field>
                     </v-col>
                 </v-row>
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import firebase from '~/plugins/firebase'
 export default {
     data: () => ({
         email: "",
@@ -52,6 +53,23 @@ export default {
     },
     methods: {
         submit(){
+            firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((user) => {
+            }).then(() => {
+                firebase.firestore().collection('users').get().then(snapshot => {
+                        snapshot.forEach(doc => {
+                        if(doc.data().mailadress === this.email){
+                            console.log(1,doc.id, " => ", doc.data());
+                            this.$store.commit("changId", doc.id);
+                            console.log(2);    
+                            this.$router.push("/home");
+                        }
+                    })
+                })
+            }).catch((error) => {
+                this.error_message = error.message
+                console.log(error.message)
+                alert(error.message);
+            })
 
         },
         toregist(){
