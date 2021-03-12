@@ -43,7 +43,7 @@
 .home {
   background: url("../static/images/1990310_m.jpg");
   background-size: cover;
-  background-position: center top 39%;
+  background-position: center top 38%;
   width: 100%;
   height: 100%;
 }
