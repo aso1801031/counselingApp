@@ -30,15 +30,15 @@
             <v-card class="mx-auto" max-width="900" align="center">
                 <v-card-text>
                     <v-row>
-                        <v-col cols="4" align-items-center>
-                            <h4>写真</h4>
+                        <v-col cols="4" class="pic">
+                            <img src="../static/images/1.png" width="200px" height="200px">
                         </v-col>
 
                         <v-col cols="8">
-                            <v-col cols="8">
+                            <v-col cols="10">
                                 <v-text-field counter="10" label="ニックネーム"></v-text-field>
                             </v-col>
-                            <v-col cols="8">
+                            <v-col cols="10">
                                 <v-textarea outlined name="input-7-4" label="自己紹介" value=""></v-textarea>
                             </v-col>
                         </v-col>
@@ -63,4 +63,9 @@ export default {
 </script>
 
 <style>
+.pic {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
 </style>
