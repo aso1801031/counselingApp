@@ -53,7 +53,7 @@
                         </v-col>
                         <v-col cols="12" md="8">                            
                             <v-text-field
-                            v-model="name"
+                            v-model="nickname"
                             label="ニックネーム"
                             class="mt-5"
                             ></v-text-field>                           
@@ -73,14 +73,14 @@
                                 >
                                 <v-radio
                                     label="男"
-                                    value="men"
+                                    value="男"
                                 ></v-radio>
                                 <v-radio
                                     label="女"
-                                    value="wmen"
+                                    value="女"
                                 ></v-radio><v-radio
                                     label="その他"
-                                    value="other"
+                                    value="その他"
                                 ></v-radio>
                             </v-radio-group>                   
                         </v-col>
@@ -158,7 +158,7 @@
             mailadress: "",
             password: "",
             confirmation: "",
-            name: "",
+            nickname: "",
             sex: "",
             age: "",
             profile: "",
@@ -174,22 +174,47 @@
                     !this.mailadress ||
                     !this.password ||
                     !this.confirmation ||
-                    !this.name ||
+                    !this.nickname ||
                     !this.sex ||
                     !this.age ||
                     !this.profile ||
                     this.password != this.confirmation
                 ) {
-                    console.log("未入力のはず")
                     return false
                 }
-                console.log("入力済のはず")
                 return true
             },
         },
         methods:{
             signup:async function(){
-
+                // firebase authに情報を追加(メールアドレス,パスワード)
+                firebase.auth().createUserWithEmailAndPassword(this.mailadress,this.password)
+                .then(ok => { 
+                    // cloud firebase insert処理
+                    var self = this
+                    const db = firebase.firestore()
+                    let dbUsers = db.collection('users')
+                    dbUsers
+                    .add({
+                        mailadress: this.mailadress,
+                        password: this.password,
+                        nickname: this.nickname,
+                        sex: this.sex,
+                        age: this.age,
+                        profile: this.profile,
+                        average: 0,
+                        total: 0,
+                        imagepass: "",
+                    }).then(function(docRef){
+                        location.href = "login";
+                    })
+                }, 
+                
+                error => { 
+                    console.log("Register error", error); 
+                    alert(error);
+                    this.$router.push('registration')
+                });
             },
             submit:function(){
                 this.$router.push('login')
