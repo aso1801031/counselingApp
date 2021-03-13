@@ -200,7 +200,7 @@
                         sex: this.sex,
                         age: this.age,
                         profile: this.profile,
-                        average: 0,
+                        totalstar: 0,//評価された星の合計
                         ticket: 10,
                         get: 0,//相談に乗ってもらった数
                         give: 0,//相談に乗った数
