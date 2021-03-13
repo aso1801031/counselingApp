@@ -31,9 +31,15 @@ export default {
       return {
         roomId: this.$route.params.id,
         consultanted_name: "",
-        consultanted_id: null,
+        consultanted_id: null,//相談に乗った人
+        consultant_id: null,//相談した人
+        consultanted_ticket: null,
+        give:null, //相談に乗った数
+        get:null, //相談した数
+        consultant_ticket: null,
+        totalstar:null, //相談に乗った人の星の合計
         stars:null,
-        ave_stars:0,
+        ave_star: null,
         states: [
           5, 4, 3, 2,1
         ],
@@ -44,9 +50,20 @@ export default {
         .get().then(doc =>  {
             doc.data().consulted_id.get().then(consultanted => {
                 this.consultanted_name = consultanted.data().nickname;
-                this.consultanted_id = consultanted.id;
-                console.log(this.consultanted_id,this.consultanted_name);
+                this.consultanted_id = consultanted.id; //相談に乗った人
+                this.consultanted_ticket = consultanted.data().ticket; //相談に乗った人のチケット
+                this.totalstar = consultanted.data().totalstar; //相談に乗った人の星の数
+                this.give = consultanted.data().give; //相談に乗った人の相談に乗った回数
+                console.log("相談に乗った人：",this.consultanted_id,this.consultanted_name,
+                this.consultanted_ticket,this.totalstar,this.give);
+            });
+            doc.data().consultant_id.get().then(consultant => {
+                this.consultant_id = consultant.id //相談した人
+                this.get = consultant.data().get;
+                console.log("相談した人：",this.consultant_id,this.get);
+
             })
+
         });
     },
     methods:{
@@ -55,21 +72,24 @@ export default {
             await firebase.firestore().collection("counseling-rooms").doc(this.roomId)
             .get().then(doc =>  {
                 doc.data().consulted_id.get().then(consultanted => {
-                    if(consultanted.data().average == 0){
-                        this.ave_stars=this.stars
-                    }else{
-                        this.ave_stars = Math.round(((consultanted.data().average+this.stars)/2)*10)/10;
-                    }
+                    //相談に乗った人の情報更新
                     let userRef = firebase.firestore().collection('users').doc(this.consultanted_id);
                     userRef.update({
-                        /* 一致した場合 */
-                        average: this.ave_stars,
-                    }).then(function(userRef){
+                        give:this.give+1,
+                        ticket:this.consultanted_ticket+1,
+                        totalstar: this.totalstar + this.stars,
+                    });
+                });
+                doc.data().consultant_id.get().then(consultant =>{
+                    //相談した人の情報更新
+                    let userRef1 = firebase.firestore().collection('users').doc(this.consultant_id);
+                    userRef1.update({
+                        get:this.get+1,
+                    }).then(function(userRef1){
                         window.location.href="/home";
                     }).catch(function(error){
                         console.log('失敗...',error);
                     })
-
                 })
             });
             
