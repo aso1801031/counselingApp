@@ -8,20 +8,20 @@
                             <h5>評価</h5>
                             <h4>
                                 <v-icon color="yellow darken-2">mdi-star</v-icon>
-                                4.5
+                                {{ totalstar }}
                             </h4>
                         </v-col>
                         <v-col cols="12" sm="3" md="3">
                             <h5>相談に乗った数</h5>
-                            <h4>10件</h4>
+                            <h4>{{ get }}件</h4>
                         </v-col>
                         <v-col cols="12" sm="3" md="3">
                             <h5>相談をした数</h5>
-                            <h4>7件</h4>
+                            <h4>{{ give }}件</h4>
                         </v-col>
                         <v-col cols="12" sm="3" md="3">
                             <h5>残チケット</h5>
-                            <h4>3枚</h4>
+                            <h4>{{ ticket }}件</h4>
                         </v-col>
                     </v-row>
                 </v-card-text>
@@ -36,17 +36,17 @@
 
                         <v-col cols="8">
                             <v-col cols="10">
-                                <v-text-field counter="10" label="ニックネーム"></v-text-field>
+                                <v-text-field counter="10" v-model="nickname" label="ニックネーム" :value="nickname"></v-text-field>
                             </v-col>
                             <v-col cols="10">
-                                <v-textarea outlined name="input-7-4" label="自己紹介" value=""></v-textarea>
+                                <v-textarea outlined name="input-7-4" v-model="profile" label="自己紹介" :value="profile"></v-textarea>
                             </v-col>
                         </v-col>
                     </v-row>
                 </v-card-text>
             
                 <v-card-actions>
-                    <v-btn class="mx-auto" outlined depressed elevation="2" color="success" @click="reveal = true">
+                    <v-btn class="mx-auto" outlined depressed elevation="2" color="success" @click="reveal">
                         編集
                     </v-btn>
                 </v-card-actions>
@@ -56,10 +56,57 @@
 </template>
 
 <script>
-export default {
-    
-}
+import firebase from '~/plugins/firebase'
+    export default {
+        data: () => ({
+            nickname: "",
+            profile: "",
+            id: "",
+            give: "",
+            get: "",
+            ticket: "",
+            totalstar: "",
 
+        }),
+
+        created(){
+            var self = this
+
+            const db = firebase.firestore()
+            this.id = this.$store.state.id
+            if(this.id){
+                var docUsers = db.collection('users').doc(this.id);
+                docUsers
+                    .get()
+                    .then(function(doc) {
+                        self.nickname = doc.data().nickname
+                        self.profile = doc.data().profile
+                        self.give = doc.data().give
+                        self.get = doc.data().get
+                        self.ticket = doc.data().ticket
+                        self.totalstar = doc.data().totalstar / doc.data().get
+                })
+            }
+        },
+        methods: {
+            reveal(){   
+                const db = firebase.firestore()
+                var docUsers = db.collection('users').doc("3Gm2IH1lTcfiQ0Rq3y1T");
+                return docUsers.update({
+                    capital: true,
+                    nickname: this.nickname,
+                    profile: this.profile,
+                }).then(() => {
+                    alert("更新が完了しました。")
+                })
+                .catch((error) => {
+                    // The document probably doesn't exist.
+                    console.error("Error updating document: ", error);
+                });
+            }
+
+        },
+    }
 </script>
 
 <style>
