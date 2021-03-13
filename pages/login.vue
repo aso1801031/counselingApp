@@ -45,6 +45,7 @@
 <script>
 import firebase from '~/plugins/firebase'
 export default {
+    layout:"default2",
     data: () => ({
         email: "",
         password: "",

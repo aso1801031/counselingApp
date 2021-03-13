@@ -36,7 +36,7 @@
   
 <style>
 .home {
-background: url("../static/images/background.jpg");
+background: url("../static/images/links.jpg");
 background-size: cover;
 background-position: center top 38%;
 width: 100%;

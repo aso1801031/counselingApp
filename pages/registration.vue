@@ -202,6 +202,7 @@
                         profile: this.profile,
                         average: 0,
                         total: 0,
+                        ticket: 10,
                         imagepass: "images/"+self.num+".png",
                     }).then(function(docRef){
                         location.href = "login";
