@@ -201,8 +201,9 @@
                         age: this.age,
                         profile: this.profile,
                         average: 0,
-                        total: 0,
                         ticket: 10,
+                        get: 0,//相談に乗ってもらった数
+                        give: 0,//相談に乗った数
                         imagepass: "images/"+self.num+".png",
                     }).then(function(docRef){
                         location.href = "login";
