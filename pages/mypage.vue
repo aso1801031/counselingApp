@@ -84,7 +84,7 @@ import firebase from '~/plugins/firebase'
                         self.give = doc.data().give
                         self.get = doc.data().get
                         self.ticket = doc.data().ticket
-                        self.totalstar = doc.data().totalstar / doc.data().get
+                        self.totalstar = doc.data().totalstar / doc.data().give
                 })
             }
         },
