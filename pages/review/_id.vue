@@ -85,7 +85,8 @@ export default {
                     //相談した人の情報更新
                     let userRef1 = firebase.firestore().collection('users').doc(this.consultant_id);
                     userRef1.update({
-                        get:this.get-1,
+                        get:this.get+1,
+                        ticket:consultant_ticket-1,
                     }).then(function(userRef1){
                         firebase.firestore().collection("counseling-rooms").doc(roomid).delete().then(() => {
                             window.location.href="/home";
