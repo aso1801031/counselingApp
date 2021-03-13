@@ -67,7 +67,9 @@ export default {
     },
     methods:{
         async returnHome(){
-            console.log(1,this.stars);
+            let roomid = this.roomId;
+            console.log(1,this.stars,roomid);
+
             await firebase.firestore().collection("counseling-rooms").doc(this.roomId)
             .get().then(doc =>  {
                 doc.data().consulted_id.get().then(consultanted => {
@@ -83,9 +85,11 @@ export default {
                     //相談した人の情報更新
                     let userRef1 = firebase.firestore().collection('users').doc(this.consultant_id);
                     userRef1.update({
-                        get:this.get+1,
+                        get:this.get-1,
                     }).then(function(userRef1){
-                        window.location.href="/home";
+                        firebase.firestore().collection("counseling-rooms").doc(roomid).delete().then(() => {
+                            window.location.href="/home";
+                        })
                     }).catch(function(error){
                         console.log('失敗...',error);
                     })
