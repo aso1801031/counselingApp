@@ -13,11 +13,11 @@
                         </v-col>
                         <v-col cols="12" sm="3" md="3">
                             <h5>相談に乗った数</h5>
-                            <h4>{{ get }}件</h4>
+                            <h4>{{ give }}件</h4>
                         </v-col>
                         <v-col cols="12" sm="3" md="3">
                             <h5>相談をした数</h5>
-                            <h4>{{ give }}件</h4>
+                            <h4>{{ get }}件</h4>
                         </v-col>
                         <v-col cols="12" sm="3" md="3">
                             <h5>残チケット</h5>
@@ -84,7 +84,7 @@ import firebase from '~/plugins/firebase'
                         self.give = doc.data().give
                         self.get = doc.data().get
                         self.ticket = doc.data().ticket
-                        self.totalstar = doc.data().totalstar / doc.data().get
+                        self.totalstar = doc.data().totalstar / doc.data().give
                 })
             }
         },
