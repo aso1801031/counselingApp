@@ -6,7 +6,6 @@
                 <p class="display-1 text--primary"><!-- ユーザー名に後で変更 -->
                     {{consultanted_name}}さんの対応はどうでしたか？
                 </p>
-
                 <v-col cols="6"><!-- 星プルダウン -->
                     <v-select color="yellow" :items="states" v-model="stars" menu-props="auto" label="星いくつ？" hide-details prepend-icon="mdi-star" single-line></v-select>
                 </v-col>
