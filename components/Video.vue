@@ -49,7 +49,7 @@
     export default {   
       data () {
         return {
-          APIKey: 'c30ada52-34c6-4f36-a752-63e28d908689',
+          APIKey: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
           localStream: null,
           peerId: '',
           peer: null,
